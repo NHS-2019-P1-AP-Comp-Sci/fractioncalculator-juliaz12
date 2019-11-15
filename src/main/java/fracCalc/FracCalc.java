@@ -38,8 +38,8 @@ public class FracCalc {
     	String opr = input.substring(firstSpace + 1, secSpace);
     	String secOp = input.substring(secSpace + 1);
     	
-        return "whole:" + wholePart(secOp) + " numerator:" + numerator(secOp) + " denominator:" + denominator(secOp);
-    }
+        return "whole:" + wholePart(secOp) + " numerator:" + numerator(secOp) + " denominator:" + denominator(secOp); 
+    } 
     
     public static int underscore(String operand) {
     	int underscore = operand.indexOf("_");
@@ -51,42 +51,42 @@ public class FracCalc {
     	return fracLine;
     }
     
-    public static String wholePart(String operand) {
+    public static int wholePart(String operand) {
     	int underscore = underscore(operand);
     	int fracLine = fracLine(operand);
-    	String whole = "";
+    	int whole;
     	if (underscore != -1 && fracLine != -1) {
-        	whole = operand.substring(0, underscore);
+        	whole = Integer.parseInt(operand.substring(0, underscore));
     	} else if (underscore == -1 && fracLine == -1){
-    		whole = operand;
+    		whole = Integer.parseInt(operand);
     	} else {
-    		whole = "0";
+    		whole = 0;
     	}
     	return whole;
     }
     
-    public static String numerator(String operand) {
+    public static int numerator(String operand) {
     	int underscore = underscore(operand);
     	int fracLine = fracLine(operand);
-    	String num = "";
+    	int num;
     	if (underscore != -1 && fracLine != -1) {
-        	num = operand.substring(underscore + 1, fracLine);
+        	num = Integer.parseInt(operand.substring(underscore + 1, fracLine));
     	} else if (underscore == -1 && fracLine == -1){
-    		num = "0";
+    		num = 0;
     	} else {
-    		num = operand.substring(0, fracLine);
+    		num = Integer.parseInt(operand.substring(0, fracLine));
     	}
     	return num;
     }
     
-    public static String denominator(String operand) {
+    public static int denominator(String operand) {
     	int underscore = underscore(operand);
     	int fracLine = fracLine(operand);
-    	String den = "";
+    	int den;
     	if (underscore == -1 && fracLine == -1) {
-    		den = "1";
+    		den = 1;
     	} else {
-    		den = operand.substring(fracLine + 1);
+    		den = Integer.parseInt(operand.substring(fracLine + 1));
     	}
     	return den;
     	}
